@@ -4,10 +4,13 @@ export const palette: NonNullable<ThemeOptions['palette']> = {
   accents: {
     blue: '#1E75FF',
     darkBlue: '#677AF0',
+    lightGreen: '#A6EC99',
+    orange: '#F2A93B',
     yellow: '#FFBC24'
   },
   background: {
-    default: '#FFFFFF'
+    default: '#FFFFFF',
+    secondary: '#F3F5F9'
   },
   error: {
     main: '#FF3941'

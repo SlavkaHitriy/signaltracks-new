@@ -1,4 +1,4 @@
-import type { Components, Theme } from '@mui/material';
+import { buttonClasses, Components, Theme } from '@mui/material';
 
 export const MuiButton: Components<Theme>['MuiButton'] = {
   defaultProps: {
@@ -8,6 +8,10 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
     type: 'button'
   },
   styleOverrides: {
-    root: {}
+    root: {
+      [`&:has(.${buttonClasses.startIcon})`]: {
+        paddingLeft: '12px'
+      }
+    }
   }
 };

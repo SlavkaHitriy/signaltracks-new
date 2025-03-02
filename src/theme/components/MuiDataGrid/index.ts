@@ -14,7 +14,7 @@ export const MuiDataGrid: Components<Theme>['MuiDataGrid'] = {
   styleOverrides: {
     root: {
       border: 'none',
-      color: baseTheme.palette.text.secondary
+      color: baseTheme.palette.text.primary
     }
   }
 };

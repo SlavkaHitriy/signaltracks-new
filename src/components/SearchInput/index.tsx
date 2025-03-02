@@ -1,16 +1,15 @@
-import { IconButton, Stack, SxProps, Theme } from '@mui/material';
+import { Stack, SxProps, Theme } from '@mui/material';
 import { DefaultInput } from '@components/DefaultInput';
 import SearchIcon from '@assets/icons/search.svg';
-import ArrowsIcon from '@assets/icons/arrows.svg';
-import FilterIcon from '@assets/icons/filter.svg';
 import * as React from 'react';
 
 interface SearchInputProps {
   sx?: SxProps<Theme>;
   name: string;
+  placeholder?: string;
 }
 
-export const SearchInput: React.FC<SearchInputProps> = ({ sx, name }) => {
+export const SearchInput: React.FC<SearchInputProps> = ({ sx, name, placeholder = 'Search...' }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -29,15 +28,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({ sx, name }) => {
           }
         }}
         variant={'outlined'}
-        placeholder="Search..."
+        placeholder={placeholder}
         name={name}
       />
-      <IconButton>
-        <ArrowsIcon />
-      </IconButton>
-      <IconButton>
-        <FilterIcon />
-      </IconButton>
     </Stack>
   );
 };

@@ -1,38 +1,26 @@
 import { Navigate, Route, Routes } from 'react-router';
-import { Sidebar } from '@components/Sidebar';
 
-import { Box, Stack } from '@mui/material';
 import { Machines } from '@pages/Machines';
 import { Company } from '@pages/Company';
+import { Reports } from '@pages/Reports';
+import { Jobs } from '@pages/Jobs';
+import { JobDetails } from '@pages/JobDetails';
+import { MainLayout } from '@components/layouts/MainLayout';
+import { Login } from '@pages/Login';
 
 export const App = () => {
   return (
-    <Box
-      sx={{
-        height: '100vh',
-        width: '100vw',
-        display: 'flex',
-        overflow: 'hidden'
-      }}
-    >
-      <Sidebar />
-      <Stack flex={1} overflow={'hidden'}>
-        <Box
-          flex={1}
-          component={'main'}
-          sx={{
-            display: 'flex',
-            height: '100%'
-          }}
-        >
-          <Routes>
-            <Route path="/machines" element={<Machines />} />
-            <Route path="/company" element={<Company />} />
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route element={<MainLayout />}>
+        <Route path="/machines" element={<Machines />} />
+        <Route path="/company" element={<Company />} />
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/jobs/:id" element={<JobDetails />} />
+      </Route>
 
-            <Route path="*" element={<Navigate to="/machines" replace />} />
-          </Routes>
-        </Box>
-      </Stack>
-    </Box>
+      <Route path="*" element={<Navigate to="/machines" replace />} />
+    </Routes>
   );
 };

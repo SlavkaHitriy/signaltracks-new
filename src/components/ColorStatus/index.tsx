@@ -5,7 +5,8 @@ import { useMemo } from 'react';
 export enum EColorStatus {
   SUCCESS = 1,
   WARNING = 2,
-  ERROR = 3
+  ERROR = 3,
+  INFO = 4
 }
 
 interface IColorStatusProps {
@@ -22,6 +23,8 @@ export const ColorStatus: React.FC<IColorStatusProps> = ({ code, size = 8 }) => 
         return 'warning.main';
       case EColorStatus.ERROR:
         return 'error.main';
+      case EColorStatus.INFO:
+        return 'accents.blue';
       default:
         return 'error.main';
     }

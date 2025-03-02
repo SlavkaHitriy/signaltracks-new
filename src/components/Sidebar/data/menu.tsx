@@ -7,6 +7,7 @@ import ProductionIcon from '@assets/icons/production.svg';
 import WorkflowsIcon from '@assets/icons/workflows.svg';
 import LogoutIcon from '@assets/icons/logout.svg';
 import HelpIcon from '@assets/icons/help.svg';
+import JobsIcon from '@assets/icons/jobs.svg';
 import * as React from 'react';
 
 export interface IMenuItem {
@@ -28,22 +29,27 @@ export const mainMenu: IMenuItem[] = [
   },
   {
     title: 'Dashboards',
-    link: '/asset-listing',
+    link: '/dashboards',
     icon: <DashboardIcon />
   },
   {
     title: 'Reports',
-    link: '/devices',
+    link: '/reports',
     icon: <ReportingIcon />
   },
   {
     title: 'Production',
-    link: '/events',
+    link: '/production',
     icon: <ProductionIcon />
   },
   {
+    title: 'Inspection Jobs',
+    link: '/jobs',
+    icon: <JobsIcon />
+  },
+  {
     title: 'Workflows',
-    link: '/reporting',
+    link: '/workflows',
     icon: <WorkflowsIcon />
   }
 ];
@@ -51,7 +57,7 @@ export const mainMenu: IMenuItem[] = [
 export const systemMenu: IMenuItem[] = [
   {
     title: 'Help',
-    link: '/messages',
+    link: '/help',
     icon: <HelpIcon />
   },
   {
@@ -61,7 +67,7 @@ export const systemMenu: IMenuItem[] = [
   },
   {
     title: 'Log out',
-    link: '/support',
+    link: '/log-out',
     icon: <LogoutIcon />
   }
 ];

@@ -1,12 +1,11 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { Link } from 'react-router';
-import logo from '@assets/images/logo.svg?url';
-import logoSmall from '@assets/images/logo-small.svg?url';
 import { SidebarItem } from './SidebarItem';
 import { mainMenu, systemMenu } from './data/menu';
 import SidebarArrowIcon from '@assets/icons/sidebar-arrow.svg';
 import { useStore } from '@/store';
 import CorpIcon from '@assets/icons/corp.svg';
+import { CircleProgress } from '@components/CircleProgress';
 
 export const Sidebar = () => {
   const isSidebarOpen = useStore((state) => state.isSidebarOpen);
@@ -72,8 +71,56 @@ export const Sidebar = () => {
             }}
           >
             <Link to="/">
-              {isSidebarOpen && <Box component={'img'} src={logo} alt="logo" />}
-              {!isSidebarOpen && <Box component={'img'} src={logoSmall} alt="logo" />}
+              {isSidebarOpen && (
+                <Stack direction={'row'}>
+                  <Box mr={'8px'}>
+                    <CircleProgress
+                      sx={{
+                        color: 'common.white'
+                      }}
+                      size={24}
+                      value={100}
+                      withoutText
+                    />
+                  </Box>
+                  <Typography
+                    sx={{
+                      color: 'common.white'
+                    }}
+                    variant={'h3'}
+                  >
+                    Tubular
+                  </Typography>
+                  <Typography
+                    variant={'h3'}
+                    sx={{
+                      color: 'common.white'
+                    }}
+                  >
+                    Pro
+                  </Typography>
+                </Stack>
+              )}
+              {!isSidebarOpen && (
+                <Stack direction={'row'}>
+                  <Typography
+                    sx={{
+                      color: 'common.white'
+                    }}
+                    variant={'h3'}
+                  >
+                    T
+                  </Typography>
+                  <Typography
+                    variant={'h3'}
+                    sx={{
+                      color: 'common.white'
+                    }}
+                  >
+                    P
+                  </Typography>
+                </Stack>
+              )}
             </Link>
           </Box>
         </Box>

@@ -1,4 +1,4 @@
-import { Chip, Stack, Typography } from '@mui/material';
+import { Chip, IconButton, Stack, Typography } from '@mui/material';
 import { FormikProvider, useFormik } from 'formik';
 import { DefaultSelect } from '@components/DefaultSelect';
 import { SearchInput } from '@components/SearchInput';
@@ -6,6 +6,8 @@ import { IMachinesItem, items } from '@pages/Machines/config/items';
 import * as React from 'react';
 import { MachinesItem } from '@pages/Machines/components/MachinesItem';
 import { MachinesView } from '@pages/Machines/components/MachinesView';
+import ArrowsIcon from '@assets/icons/arrows.svg';
+import FilterIcon from '@assets/icons/filter.svg';
 
 export const Machines = () => {
   const [currentItem, setCurrentItem] = React.useState<IMachinesItem>(items[0]);
@@ -27,6 +29,12 @@ export const Machines = () => {
           </Stack>
           <Stack p="20px 12px 20px 24px" borderBottom="1px solid" borderColor="neutral.50" direction="row" gap="8px">
             <SearchInput name="search" />
+            <IconButton>
+              <ArrowsIcon />
+            </IconButton>
+            <IconButton>
+              <FilterIcon />
+            </IconButton>
           </Stack>
           <Stack
             p="12px 12px 12px 24px"

@@ -8,6 +8,8 @@ declare module '@mui/material/styles/createPalette' {
     accents: {
       blue: string;
       darkBlue: string;
+      lightGreen: string;
+      orange: string;
       yellow: string;
     };
     neutral: {
@@ -26,6 +28,8 @@ declare module '@mui/material/styles/createPalette' {
     accents: {
       blue: string;
       darkBlue: string;
+      lightGreen: string;
+      orange: string;
       yellow: string;
     };
     neutral: {
@@ -38,6 +42,10 @@ declare module '@mui/material/styles/createPalette' {
       500: string;
       700: string;
     };
+  }
+
+  interface TypeBackground {
+    secondary: string;
   }
 }
 

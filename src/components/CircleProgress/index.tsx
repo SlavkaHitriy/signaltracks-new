@@ -1,7 +1,19 @@
 import { CircularProgress, CircularProgressProps, Stack, Typography } from '@mui/material';
 import * as React from 'react';
 
-export const CircleProgress: React.FC<CircularProgressProps> = ({ size, value, thickness, ...props }) => {
+interface CircleProgressProps extends CircularProgressProps {
+  description?: string;
+  withoutText?: boolean;
+}
+
+export const CircleProgress: React.FC<CircleProgressProps> = ({
+  size,
+  value,
+  thickness,
+  description,
+  withoutText,
+  ...props
+}) => {
   return (
     <Stack position={'relative'} alignItems={'center'} justifyContent={'center'} width={size} height={size}>
       <CircularProgress
@@ -25,14 +37,27 @@ export const CircleProgress: React.FC<CircularProgressProps> = ({ size, value, t
         value={100}
         variant="determinate"
       />
-      <Typography
-        sx={{
-          position: 'absolute'
-        }}
-        variant={'h4'}
-      >
-        {value}%
-      </Typography>
+      {!withoutText && (
+        <Stack
+          alignItems={'center'}
+          sx={{
+            position: 'absolute'
+          }}
+          gap={'4px'}
+        >
+          <Typography variant={'h4'}>{value}%</Typography>
+          {description && (
+            <Typography
+              sx={{
+                color: 'neutral.300'
+              }}
+              variant={'footnote'}
+            >
+              {description}
+            </Typography>
+          )}
+        </Stack>
+      )}
     </Stack>
   );
 };
