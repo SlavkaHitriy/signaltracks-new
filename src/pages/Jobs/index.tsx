@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Grid2, Stack, Typography } from '@mui/material';
 import { FormikProvider, useFormik } from 'formik';
 import { stringHealths, strings } from '@pages/Jobs/config/statistics';
 import { SearchInput } from '@components/SearchInput';
@@ -7,6 +7,9 @@ import EditIcon from '@assets/icons/edit.svg';
 import { columns, rows } from './config/jobs';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router';
+import { utilizationCharts } from '@pages/Company/config/utilization-charts';
+import { Difference } from '@components/Difference';
+import { UtilizationChart } from '@pages/Company/components/UtilizationChart';
 
 export const Jobs = () => {
   const navigate = useNavigate();
@@ -74,6 +77,30 @@ export const Jobs = () => {
             </Stack>
           </Stack>
         </Stack>
+
+        <Grid2
+          sx={{
+            borderRadius: '8px',
+            bgcolor: 'common.white',
+            p: '24px'
+          }}
+          container
+        >
+          {utilizationCharts.slice(0, 2).map((item, index) => (
+            <Grid2 key={`utilization-chart-${item.id}-${index}`} borderRadius={'4px'} p={'16px'} size={6}>
+              <Stack direction={'row'} gap={'24px'}>
+                <Stack gap={'12px'}>
+                  <Typography variant={'bodyMedium'}>{item.title}</Typography>
+                  <Typography variant={'h2'}>{item.value}</Typography>
+                  <Difference isDown={item.isDown}>{item.difference}</Difference>
+                </Stack>
+                <Box flex={1}>
+                  <UtilizationChart />
+                </Box>
+              </Stack>
+            </Grid2>
+          ))}
+        </Grid2>
 
         <Stack
           sx={{
