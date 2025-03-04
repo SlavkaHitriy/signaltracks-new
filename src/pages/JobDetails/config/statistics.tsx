@@ -1,63 +1,56 @@
-import { Stack, Typography } from '@mui/material';
-import { ColorStatus, EColorStatus } from '@components/ColorStatus';
-
 export const jobInfo1 = [
   {
     title: 'Job No.',
-    value: '1000'
+    fieldName: 'jobNumber'
   },
   {
     title: 'Customer',
-    value: 'CONOCPHILLIPS'
+    fieldName: 'customer'
   },
   {
     title: 'Service Ticket',
-    value: 'None'
+    fieldName: 'serviceTicket'
   },
   {
     title: 'Contractor',
-    value: 'Latshaw Drilling'
+    fieldName: 'contractor'
   },
   {
     title: 'Date',
-    value: '12-23-2024 01:02 am'
+    fieldName: 'date'
   },
   {
     title: 'Location',
-    value: 'Logistics'
+    fieldName: 'location'
   }
 ];
 
 export const jobInfo2 = [
   {
     title: 'Well Name',
-    value: 'PAD-1102'
+    fieldName: 'wellName'
   },
   {
     title: 'Rig',
-    value: 'Latshaw 44'
+    fieldName: 'rigName'
   },
   {
     title: 'County',
-    value: 'Lea'
+    fieldName: 'county'
   },
   {
     title: 'Status',
-    value: (
-      <Stack direction={'row'} alignItems={'center'} gap={'8px'}>
-        <Typography variant={'bodyMedium'}>In Progress</Typography>
-        <ColorStatus code={EColorStatus.INFO} />
-      </Stack>
-    )
+    isSelect: true,
+    fieldName: 'status'
   },
   {
     title: 'Inspection Category',
-    value: 'DS-1 CAT4'
+    fieldName: 'inspectionCategory'
   },
   {
     title: 'Pipe Profile',
-    value: 'CET 54 5 1/2: S-135 Drill Pipe',
-    pipeLink: 'tempLink'
+    pipeLink: 'tempLink',
+    fieldName: 'pipeProfile'
   }
 ];
 

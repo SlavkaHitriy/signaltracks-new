@@ -4,7 +4,7 @@ import { DefaultSelect } from '@components/DefaultSelect';
 import EditIcon from '@assets/icons/edit.svg';
 import { DataGrid, GridRowParams } from '@mui/x-data-grid';
 import { columns, rows } from './config/joints';
-import { useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import {
   pipeInfo1,
   pipeInfo2,
@@ -14,7 +14,11 @@ import {
 } from '@pages/JobDetails/components/Details/config/pipeInfo';
 import CloseIcon from '@assets/icons/close.svg';
 
-export const Details = () => {
+interface DetailsProps {
+  setIsEditing: Dispatch<SetStateAction<boolean>>;
+}
+
+export const Details: FC<DetailsProps> = ({ setIsEditing }) => {
   const [selectedPipe, setSelectedPipe] = useState<GridRowParams | null>(null);
 
   return (
@@ -54,6 +58,7 @@ export const Details = () => {
           }}
           startIcon={<EditIcon />}
           variant={'outlined'}
+          onClick={() => setIsEditing(true)}
         >
           Edit Inspection Job
         </Button>

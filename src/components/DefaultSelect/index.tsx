@@ -1,9 +1,10 @@
-import { Box, FormControl, MenuItem, Select, Typography } from '@mui/material';
+import { Box, FormControl, MenuItem, Typography } from '@mui/material';
 import type { SelectProps } from '@mui/material';
 import { memo, useEffect } from 'react';
 import { ExpandMore } from '@mui/icons-material';
 import { useField } from 'formik';
 import * as React from 'react';
+import { DefaultInput } from '@components/DefaultInput';
 
 type DefaultSelectProps = SelectProps & {
   amount?: number;
@@ -40,41 +41,25 @@ export const DefaultSelect: React.FC<DefaultSelectProps> = memo(
               <Typography variant="caption">{amount}</Typography>
             </Box>
           )}
-          <Select
-            label={label}
-            IconComponent={ExpandMore}
+          <DefaultInput
             sx={{
-              width: '100%',
-              border: '1px solid #000',
-              borderColor: 'neutral.50',
-              borderRadius: '4px',
-              height: 36,
-              overflow: 'hidden',
               bgcolor: 'common.white',
-              '&::before': {
-                border: 'none'
-              },
-              '.MuiSelect-select': {
-                py: '6px',
-                fontSize: 14,
-                pl: 1
-              },
-              '& .MuiSelect-icon': {
-                right: '8px',
-                zIndex: 1,
-                color: 'neutral.400'
-              },
-              '.MuiInput-input': {
-                paddingRight: `${amount ? 60 : 36}px !important`
+              borderRadius: '4px'
+            }}
+            label={label}
+            slotProps={{
+              select: {
+                IconComponent: ExpandMore
               }
             }}
             defaultValue={defaultValue}
+            select
             {...field}
           >
             <MenuItem value={defaultValue}>{defaultValue}</MenuItem>
             <MenuItem value={`${defaultValue} 1`}>{defaultValue} 1</MenuItem>
             <MenuItem value={`${defaultValue} 2`}>{defaultValue} 2</MenuItem>
-          </Select>
+          </DefaultInput>
         </>
       </FormControl>
     );

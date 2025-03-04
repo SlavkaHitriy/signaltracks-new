@@ -29,6 +29,17 @@ export const MuiTextField: Components<Theme>['MuiTextField'] = {
           color: baseTheme.palette.neutral[150],
           opacity: 1
         }
+      },
+      ['&:has(.Mui-readOnly)']: {
+        [`& .${inputBaseClasses.input}`]: {
+          paddingLeft: 0,
+          paddingRight: 0,
+          cursor: 'default',
+          fontWeight: 500
+        },
+        [`& .${outlinedInputClasses.notchedOutline}`]: {
+          border: 0
+        }
       }
     }
   }

@@ -3,7 +3,7 @@ import { FormikProvider, useFormik } from 'formik';
 import { stringHealths, strings } from '@pages/Jobs/config/statistics';
 import { SearchInput } from '@components/SearchInput';
 import { DefaultSelect } from '@components/DefaultSelect';
-import EditIcon from '@assets/icons/edit.svg';
+import AddIcon from '@assets/icons/add.svg';
 import { columns, rows } from './config/jobs';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router';
@@ -25,82 +25,69 @@ export const Jobs = () => {
   return (
     <FormikProvider value={formik}>
       <Stack gap={'38px'} flex={1} overflow={'hidden auto'} p={'24px'} bgcolor={'background.secondary'}>
-        <Stack
-          direction={'row'}
-          gap={'32px'}
-          justifyContent={'space-between'}
-          p={'24px'}
-          borderRadius={'8px'}
-          bgcolor={'common.white'}
-        >
-          <Stack gap={'16px'}>
-            <Typography variant={'h4'}>Strings</Typography>
-            <Stack gap={'48px'} justifyContent={'space-between'} direction={'row'}>
-              {strings.map((str, idx) => (
-                <Stack key={`string-${idx}`} gap={'24px'}>
-                  <Stack gap={'8px'}>
-                    <Typography variant={'bodyMedium'}>{str.name}</Typography>
-                    <Typography variant={'body1'}>{str.description}</Typography>
+        <Stack gap={'38px'} p={'24px'} borderRadius={'8px'} bgcolor={'common.white'}>
+          <Stack direction={'row'} gap={'32px'} justifyContent={'space-between'}>
+            <Stack gap={'16px'}>
+              <Typography variant={'h4'}>Strings</Typography>
+              <Stack gap={'48px'} justifyContent={'space-between'} direction={'row'}>
+                {strings.map((str, idx) => (
+                  <Stack key={`string-${idx}`} gap={'24px'}>
+                    <Stack gap={'8px'}>
+                      <Typography variant={'bodyMedium'}>{str.name}</Typography>
+                      <Typography variant={'body1'}>{str.description}</Typography>
+                    </Stack>
+                    <Stack gap={'8px'}>
+                      <Typography
+                        variant={'h3'}
+                        sx={{
+                          ...(str.highlighted && {
+                            color: 'error.main'
+                          })
+                        }}
+                      >
+                        {str.value}
+                      </Typography>
+                      {str.color && <Box width={'100%'} height={'4px'} bgcolor={str.color} />}
+                    </Stack>
                   </Stack>
-                  <Stack gap={'8px'}>
-                    <Typography
-                      variant={'h3'}
-                      sx={{
-                        ...(str.highlighted && {
-                          color: 'error.main'
-                        })
-                      }}
-                    >
-                      {str.value}
-                    </Typography>
-                    {str.color && <Box width={'100%'} height={'4px'} bgcolor={str.color} />}
-                  </Stack>
-                </Stack>
-              ))}
-            </Stack>
-          </Stack>
-          <Stack gap={'16px'}>
-            <Typography variant={'h4'}>String Health</Typography>
-            <Stack gap={'48px'} justifyContent={'space-between'} direction={'row'}>
-              {stringHealths.map((str, idx) => (
-                <Stack key={`string-${idx}`} gap={'24px'}>
-                  <Stack gap={'8px'}>
-                    <Typography variant={'bodyMedium'}>{str.name}</Typography>
-                    <Typography variant={'body1'}>{str.description}</Typography>
-                  </Stack>
-                  <Stack gap={'8px'}>
-                    <Typography variant={'h3'}>{str.value}</Typography>
-                    {str.color && <Box width={'100%'} height={'4px'} bgcolor={str.color} />}
-                  </Stack>
-                </Stack>
-              ))}
-            </Stack>
-          </Stack>
-        </Stack>
-
-        <Grid2
-          sx={{
-            borderRadius: '8px',
-            bgcolor: 'common.white',
-            p: '24px'
-          }}
-          container
-        >
-          {utilizationCharts.slice(0, 2).map((item, index) => (
-            <Grid2 key={`utilization-chart-${item.id}-${index}`} borderRadius={'4px'} p={'16px'} size={6}>
-              <Stack direction={'row'} gap={'24px'}>
-                <Stack gap={'12px'}>
-                  <Typography variant={'bodyMedium'}>{item.title}</Typography>
-                  <Typography variant={'h2'}>{item.value}</Typography>
-                  <Difference isDown={item.isDown}>{item.difference}</Difference>
-                </Stack>
-                <Box flex={1}>
-                  <UtilizationChart />
-                </Box>
+                ))}
               </Stack>
-            </Grid2>
-          ))}
-        </Grid2>
+            </Stack>
+            <Stack gap={'16px'}>
+              <Typography variant={'h4'}>String Health</Typography>
+              <Stack gap={'48px'} justifyContent={'space-between'} direction={'row'}>
+                {stringHealths.map((str, idx) => (
+                  <Stack key={`string-${idx}`} gap={'24px'}>
+                    <Stack gap={'8px'}>
+                      <Typography variant={'bodyMedium'}>{str.name}</Typography>
+                      <Typography variant={'body1'}>{str.description}</Typography>
+                    </Stack>
+                    <Stack gap={'8px'}>
+                      <Typography variant={'h3'}>{str.value}</Typography>
+                      {str.color && <Box width={'100%'} height={'4px'} bgcolor={str.color} />}
+                    </Stack>
+                  </Stack>
+                ))}
+              </Stack>
+            </Stack>
+          </Stack>
+          <Grid2 container>
+            {utilizationCharts.slice(0, 2).map((item, index) => (
+              <Grid2 key={`utilization-chart-${item.id}-${index}`} borderRadius={'4px'} p={'16px'} size={6}>
+                <Stack direction={'row'} gap={'24px'}>
+                  <Stack gap={'12px'}>
+                    <Typography variant={'bodyMedium'}>{item.title}</Typography>
+                    <Typography variant={'h2'}>{item.value}</Typography>
+                    <Difference isDown={item.isDown}>{item.difference}</Difference>
+                  </Stack>
+                  <Box flex={1}>
+                    <UtilizationChart />
+                  </Box>
+                </Stack>
+              </Grid2>
+            ))}
+          </Grid2>
+        </Stack>
 
         <Stack
           sx={{
@@ -135,10 +122,10 @@ export const Jobs = () => {
               fontSize: '14px',
               px: '36px !important'
             }}
-            startIcon={<EditIcon />}
+            startIcon={<AddIcon />}
             variant={'outlined'}
           >
-            Edit Inspection Job
+            Add Inspection Job
           </Button>
         </Stack>
 

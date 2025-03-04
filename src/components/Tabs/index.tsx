@@ -9,6 +9,7 @@ export interface ITabItem {
   label: string;
   amount?: number;
   element: React.ReactNode;
+  hideStaticContent?: boolean;
 }
 
 interface ITabsProps {
@@ -70,7 +71,7 @@ export const Tabs: React.FC<ITabsProps> = memo(({ items, sx, slots }) => {
         </MuiTabs>
         {slots?.right}
       </Stack>
-      {slots?.content}
+      {!items.find((item) => item.id === selectedTab)?.hideStaticContent && slots?.content}
       {items.map((item) => (
         <CustomTab value={selectedTab} id={item.id} key={`tab-content-${item.id}`}>
           {item.element}

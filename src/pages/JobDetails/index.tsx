@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Stack, tabsClasses, Typography } from '@mui/material';
+import { Box, Button, IconButton, inputBaseClasses, Stack, tabsClasses, Typography } from '@mui/material';
 import { FormikProvider, useFormik } from 'formik';
 import { jobInfo1, jobInfo2, stringHealths } from './config/statistics';
 import ArrowIcon from '@assets/icons/arrow.svg';
@@ -10,14 +10,32 @@ import { Details } from '@pages/JobDetails/components/Details';
 import { Notes } from '@pages/JobDetails/components/Notes';
 import { Attachments } from '@pages/JobDetails/components/Attachments';
 import { Map } from '@pages/JobDetails/components/Map';
+import { Utilization } from '@pages/JobDetails/components/Utilization';
+import { useState } from 'react';
+import { DefaultInput } from '@components/DefaultInput';
+import { DefaultSelect } from '@components/DefaultSelect';
+import { ColorStatus, EColorStatus } from '@components/ColorStatus';
 
 export const JobDetails = () => {
+  const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
       search: '',
-      filter: 'All'
+      filter: 'All',
+      jobNumber: '1000',
+      customer: 'CONOCPHILLIPS',
+      serviceTicket: 'None',
+      contractor: 'Latshaw Drilling',
+      date: '12-23-2024 01:02 am',
+      location: 'Logistics',
+      wellName: 'PAD-1102',
+      rigName: 'Latshaw 44',
+      county: 'Lea',
+      status: 'In Progress',
+      inspectionCategory: 'DS-1 CAT4',
+      pipeProfile: 'CET 54 5 1/2: S-135 Drill Pipe'
     },
     onSubmit: () => {}
   });
@@ -123,9 +141,17 @@ export const JobDetails = () => {
                   />
                   <Stack direction={'row'} gap={'32px'}>
                     {jobInfo1.map((info, idx) => (
-                      <Stack key={`info-${idx}`} gap={'12px'} flex={1}>
+                      <Stack key={`info-${idx}`} gap={'12px'} width={'100%'}>
                         <Typography variant={'body1'}>{info.title}</Typography>
-                        <Typography variant={'bodyMedium'}>{info.value}</Typography>
+                        <DefaultInput
+                          fullWidth
+                          name={info.fieldName}
+                          slotProps={{
+                            input: {
+                              readOnly: !isEditing
+                            }
+                          }}
+                        />
                       </Stack>
                     ))}
                   </Stack>
@@ -137,12 +163,41 @@ export const JobDetails = () => {
                   <Stack direction={'row'} gap={'32px'}>
                     {jobInfo2.map((info, idx) => (
                       <Stack key={`info-${idx}`} gap={'12px'} flex={1} direction={'row'} alignItems={'center'}>
-                        <Stack gap={'12px'}>
-                          <Typography variant={'body1'}>{info.title}</Typography>
-                          {typeof info.value === 'string' ? (
-                            <Typography variant={'bodyMedium'}>{info.value}</Typography>
+                        <Stack gap={'12px'} width={'100%'} height={'100%'}>
+                          <Typography
+                            sx={{
+                              flex: 1
+                            }}
+                            variant={'body1'}
+                          >
+                            {info.title}
+                          </Typography>
+                          {info.isSelect ? (
+                            isEditing ? (
+                              <DefaultSelect
+                                sx={{
+                                  [`.${inputBaseClasses.root}`]: {
+                                    height: 36
+                                  }
+                                }}
+                                name={info.fieldName}
+                              />
+                            ) : (
+                              <Stack height={36} direction={'row'} alignItems={'center'} gap={'8px'}>
+                                <Typography variant={'bodyMedium'}>In Progress</Typography>
+                                <ColorStatus code={EColorStatus.INFO} />
+                              </Stack>
+                            )
                           ) : (
-                            info.value
+                            <DefaultInput
+                              fullWidth
+                              name={info.fieldName}
+                              slotProps={{
+                                input: {
+                                  readOnly: !isEditing
+                                }
+                              }}
+                            />
                           )}
                         </Stack>
                         {info.pipeLink && (
@@ -158,6 +213,16 @@ export const JobDetails = () => {
                       </Stack>
                     ))}
                   </Stack>
+                  {isEditing && (
+                    <Stack direction={'row'} justifyContent={'flex-end'} gap={'12px'}>
+                      <Button color={'error'} variant={'text'} size={'small'} onClick={() => setIsEditing(false)}>
+                        Cancel
+                      </Button>
+                      <Button color={'success'} size={'medium'} onClick={() => setIsEditing(false)}>
+                        Save
+                      </Button>
+                    </Stack>
+                  )}
                 </Stack>
               )
             }}
@@ -165,7 +230,7 @@ export const JobDetails = () => {
               {
                 id: 1,
                 label: 'Details',
-                element: <Details />
+                element: <Details setIsEditing={setIsEditing} />
               },
               {
                 id: 2,
@@ -181,6 +246,12 @@ export const JobDetails = () => {
                 id: 4,
                 label: 'Map',
                 element: <Map />
+              },
+              {
+                id: 5,
+                label: 'Utilization',
+                element: <Utilization />,
+                hideStaticContent: true
               }
             ]}
           />

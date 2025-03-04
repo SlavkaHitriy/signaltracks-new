@@ -1,0 +1,89 @@
+import { Box, Stack, useTheme } from '@mui/material';
+import { LineChart, markElementClasses } from '@mui/x-charts';
+import { useMemo } from 'react';
+
+export const Chart = () => {
+  const theme = useTheme();
+
+  const startDate = new Date(2024, 0, 1);
+  const endDate = new Date(2024, 11, 31);
+
+  const xAxisDates = useMemo(
+    () =>
+      Array.from(
+        { length: ((endDate as unknown as number) - (startDate as unknown as number)) / (1000 * 60 * 60 * 24) + 1 },
+        (_, i) => new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000)
+      ),
+    []
+  );
+
+  const seriesData = useMemo(() => xAxisDates.map(() => Math.random() * 100), [xAxisDates]);
+  const seriesData2 = useMemo(() => xAxisDates.map(() => Math.random() * 100), [xAxisDates]);
+
+  const defaultMin = new Date(2024, 3, 10);
+  const defaultMax = new Date(2024, 3, 26);
+
+  return (
+    <Box>
+      <LineChart
+        sx={{
+          '.MuiLineElement-series-uvId': {
+            strokeDasharray: '5 5'
+          },
+          [`.${markElementClasses.root}`]: {
+            display: 'none'
+          },
+          '.MuiChartsAxis-directionX .MuiChartsAxis-tickContainer': {
+            '&:first-of-type, &:last-of-type': {
+              display: 'none'
+            }
+          }
+        }}
+        xAxis={[
+          {
+            scaleType: 'time',
+            data: xAxisDates,
+            disableTicks: true,
+            disableLine: true,
+            valueFormatter: (date) => new Intl.DateTimeFormat('en-US', { day: '2-digit', month: 'short' }).format(date),
+            min: defaultMin,
+            max: defaultMax
+          }
+        ]}
+        yAxis={[
+          {
+            disableTicks: true,
+            disableLine: true,
+            min: 0,
+            max: 100,
+            valueFormatter: (value) => `${value}%`
+          }
+        ]}
+        series={[
+          {
+            data: seriesData,
+            color: theme.palette.accents.blue
+          },
+          {
+            data: seriesData2,
+            id: 'uvId',
+            color: theme.palette.accents.blue
+          }
+        ]}
+        height={300}
+        margin={{ top: 20, bottom: 20, right: 0 }}
+        skipAnimation
+        grid={{
+          vertical: false,
+          horizontal: true
+        }}
+      />
+      <Stack direction={'row'} justifyContent={'flex-end'} mt={'16px'}>
+        {`${new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(defaultMin)} - ${new Intl.DateTimeFormat(
+          'en-US',
+          { month: 'short', day: '2-digit', year: 'numeric' }
+        ).format(defaultMax)}`}
+      </Stack>
+    </Box>
+  );
+};
