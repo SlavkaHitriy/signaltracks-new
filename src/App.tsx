@@ -7,6 +7,7 @@ import { Jobs } from '@pages/Jobs';
 import { JobDetails } from '@pages/JobDetails';
 import { MainLayout } from '@components/layouts/MainLayout';
 import { Login } from '@pages/Login';
+import { Settings } from '@pages/Settings';
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
         <Route path="/reports" element={<Reports />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/:id" element={<JobDetails />} />
+        <Route path="/settings" element={<Settings />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/machines" replace />} />
