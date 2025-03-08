@@ -1,15 +1,12 @@
-import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router';
-import { FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
 import { DefaultInput } from '@components/DefaultInput';
 import { FormikProvider, useFormik } from 'formik';
-import HideIcon from '@assets/icons/hide-password.svg';
-import ShowIcon from '@assets/icons/show-password.svg';
 import { CircleProgress } from '@components/CircleProgress';
 
-export const Login = () => {
+export const ForgotPassword = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -64,9 +61,10 @@ export const Login = () => {
               Pro
             </Typography>
           </Stack>
-          <Typography my={'32px'} variant={'h2'}>
-            Sign In
-          </Typography>
+          <Stack my={'32px'} gap={'8px'} alignItems={'center'}>
+            <Typography variant={'h2'}>Forgot Password?</Typography>
+            <Typography variant={'body1'}>Enter your email to reset your password</Typography>
+          </Stack>
           <Box component={'form'} onSubmit={handleSubmit} width={'100%'}>
             <Stack gap={'24px'} width={'100%'}>
               <Stack minWidth={250} direction={'column'} width={'100%'}>
@@ -74,54 +72,6 @@ export const Login = () => {
                   Email
                 </Typography>
                 <DefaultInput name={'email'} type={'email'} placeholder="example@oilservices.com" />
-              </Stack>
-              <Stack direction={'column'} width={'100%'}>
-                <Typography variant={'footnote'} mb={'4px'} color={'grey.blue'}>
-                  Password
-                </Typography>
-                <Box position={'relative'}>
-                  <DefaultInput
-                    name={'password'}
-                    slotProps={{
-                      input: {
-                        endAdornment: (
-                          <IconButton
-                            sx={{
-                              svg: {
-                                width: 20,
-                                height: 20
-                              }
-                            }}
-                            variant={'contained'}
-                            onClick={() => setShowPassword((prev) => !prev)}
-                          >
-                            {showPassword ? <HideIcon /> : <ShowIcon />}
-                          </IconButton>
-                        )
-                      }
-                    }}
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="*************************"
-                  />
-                </Box>
-                <Box mt={'4px'} alignSelf={'flex-end'}>
-                  <Link to={'/forgot-password'}>
-                    <Typography
-                      sx={{
-                        color: 'grey.blue',
-                        textDecoration: 'underline',
-                        cursor: 'pointer',
-                        fontSize: 13,
-                        textAlign: 'right',
-                        '&:hover': {
-                          textDecoration: 'none'
-                        }
-                      }}
-                    >
-                      Forgot Password?
-                    </Typography>
-                  </Link>
-                </Box>
               </Stack>
               <Button
                 sx={{
@@ -134,7 +84,7 @@ export const Login = () => {
                 }}
                 type={'submit'}
               >
-                Sign In
+                Send
               </Button>
             </Stack>
           </Box>

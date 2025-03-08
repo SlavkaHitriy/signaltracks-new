@@ -7,14 +7,16 @@ import HideIcon from '@assets/icons/hide-password.svg';
 import ShowIcon from '@assets/icons/show-password.svg';
 import { CircleProgress } from '@components/CircleProgress';
 
-export const Login = () => {
+export const Register = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     },
     onSubmit: () => {}
   });
@@ -65,7 +67,7 @@ export const Login = () => {
             </Typography>
           </Stack>
           <Typography my={'32px'} variant={'h2'}>
-            Sign In
+            Register
           </Typography>
           <Box component={'form'} onSubmit={handleSubmit} width={'100%'}>
             <Stack gap={'24px'} width={'100%'}>
@@ -104,23 +106,35 @@ export const Login = () => {
                     placeholder="*************************"
                   />
                 </Box>
-                <Box mt={'4px'} alignSelf={'flex-end'}>
-                  <Link to={'/forgot-password'}>
-                    <Typography
-                      sx={{
-                        color: 'grey.blue',
-                        textDecoration: 'underline',
-                        cursor: 'pointer',
-                        fontSize: 13,
-                        textAlign: 'right',
-                        '&:hover': {
-                          textDecoration: 'none'
-                        }
-                      }}
-                    >
-                      Forgot Password?
-                    </Typography>
-                  </Link>
+              </Stack>
+              <Stack direction={'column'} width={'100%'}>
+                <Typography variant={'footnote'} mb={'4px'} color={'grey.blue'}>
+                  Confirm Password
+                </Typography>
+                <Box position={'relative'}>
+                  <DefaultInput
+                    name={'confirmPassword'}
+                    slotProps={{
+                      input: {
+                        endAdornment: (
+                          <IconButton
+                            sx={{
+                              svg: {
+                                width: 20,
+                                height: 20
+                              }
+                            }}
+                            variant={'contained'}
+                            onClick={() => setShowConfirmPassword((prev) => !prev)}
+                          >
+                            {showConfirmPassword ? <HideIcon /> : <ShowIcon />}
+                          </IconButton>
+                        )
+                      }
+                    }}
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    placeholder="*************************"
+                  />
                 </Box>
               </Stack>
               <Button
@@ -134,7 +148,7 @@ export const Login = () => {
                 }}
                 type={'submit'}
               >
-                Sign In
+                Sign Up
               </Button>
             </Stack>
           </Box>
@@ -144,16 +158,16 @@ export const Login = () => {
                 whiteSpace: 'nowrap'
               }}
             >
-              Don’t have an account?
+              Already have an account?
             </Typography>
-            <Link to={'/register'}>
+            <Link to={'/login'}>
               <Typography
                 variant={'body1'}
                 sx={{
                   textDecoration: 'underline'
                 }}
               >
-                Sign Up
+                Log In
               </Typography>
             </Link>
           </Stack>
