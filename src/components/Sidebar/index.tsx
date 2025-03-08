@@ -4,7 +4,6 @@ import { SidebarItem } from './SidebarItem';
 import { mainMenu, systemMenu } from './data/menu';
 import SidebarArrowIcon from '@assets/icons/sidebar-arrow.svg';
 import { useStore } from '@/store';
-import CorpIcon from '@assets/icons/corp.svg';
 import { CircleProgress } from '@components/CircleProgress';
 
 export const Sidebar = () => {
@@ -142,7 +141,6 @@ export const Sidebar = () => {
             }
           }}
         >
-          <CorpIcon />
           <Box
             sx={{
               transition: 'all 0.15s ease',
@@ -152,7 +150,7 @@ export const Sidebar = () => {
             }}
           >
             <Typography fontWeight={500} color="neutral.700" whiteSpace="nowrap">
-              InMetal Inc
+              Inspection Module
             </Typography>
           </Box>
         </Box>

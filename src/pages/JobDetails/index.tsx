@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { DefaultInput } from '@components/DefaultInput';
 import { DefaultSelect } from '@components/DefaultSelect';
 import { ColorStatus, EColorStatus } from '@components/ColorStatus';
+import EditIcon from '@assets/icons/edit.svg';
 
 export const JobDetails = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -133,6 +134,23 @@ export const JobDetails = () => {
                         />
                       </Stack>
                     </Stack>
+                    <Stack flex={1} alignItems={'flex-end'}>
+                      <Button
+                        // @ts-expect-error error
+                        color={'text.primary'}
+                        sx={{
+                          color: 'text.primary',
+                          textTransform: 'capitalize',
+                          fontSize: '14px',
+                          px: '36px !important'
+                        }}
+                        startIcon={<EditIcon />}
+                        variant={'outlined'}
+                        onClick={() => setIsEditing(true)}
+                      >
+                        Edit Inspection Job
+                      </Button>
+                    </Stack>
                   </Stack>
                   <Box
                     sx={(theme) => ({
@@ -230,7 +248,7 @@ export const JobDetails = () => {
               {
                 id: 1,
                 label: 'Details',
-                element: <Details setIsEditing={setIsEditing} />
+                element: <Details />
               },
               {
                 id: 2,

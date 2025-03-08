@@ -7,9 +7,9 @@ import AddIcon from '@assets/icons/add.svg';
 import { columns, rows } from './config/jobs';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router';
-import { utilizationCharts } from '@pages/Company/config/utilization-charts';
+import { utilizationCharts } from '@pages/Dashboard/config/utilization-charts';
 import { Difference } from '@components/Difference';
-import { UtilizationChart } from '@pages/Company/components/UtilizationChart';
+import { UtilizationChart } from '@pages/Dashboard/components/UtilizationChart';
 
 export const Jobs = () => {
   const navigate = useNavigate();

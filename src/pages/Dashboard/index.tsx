@@ -3,15 +3,15 @@ import { FormikProvider, useFormik } from 'formik';
 import { DefaultSelect } from '@components/DefaultSelect';
 import AlertIcon from '@assets/icons/alert.svg';
 import { CircleProgress } from '@components/CircleProgress';
-import { utilizationProgresses } from '@pages/Company/config/utilization-progresses';
+import { utilizationProgresses } from '@pages/Dashboard/config/utilization-progresses';
 import { Difference } from '@components/Difference';
-import { UtilizationChart } from '@pages/Company/components/UtilizationChart';
-import { utilizationCharts } from '@pages/Company/config/utilization-charts';
-import { cycleTimes } from '@pages/Company/config/cycle-times';
-import { pieCharts } from '@pages/Company/config/pie-chart-items';
-import { PieChart } from '@pages/Company/components/PieChart';
+import { UtilizationChart } from '@pages/Dashboard/components/UtilizationChart';
+import { utilizationCharts } from '@pages/Dashboard/config/utilization-charts';
+import { cycleTimes } from '@pages/Dashboard/config/cycle-times';
+import { pieCharts } from '@pages/Dashboard/config/pie-chart-items';
+import { PieChart } from '@pages/Dashboard/components/PieChart';
 
-export const Company = () => {
+export const Dashboard = () => {
   const formik = useFormik({
     initialValues: {
       days: 'Yesterday'

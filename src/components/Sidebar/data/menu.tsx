@@ -1,10 +1,7 @@
 import SettingsIcon from '@assets/icons/settings.svg';
 import ReportingIcon from '@assets/icons/reporting.svg';
-import CompanyIcon from '@assets/icons/company.svg';
-import MachinesIcon from '@assets/icons/machines.svg';
 import DashboardIcon from '@assets/icons/dashboard.svg';
 import ProductionIcon from '@assets/icons/production.svg';
-import WorkflowsIcon from '@assets/icons/workflows.svg';
 import LogoutIcon from '@assets/icons/logout.svg';
 import HelpIcon from '@assets/icons/help.svg';
 import JobsIcon from '@assets/icons/jobs.svg';
@@ -18,19 +15,14 @@ export interface IMenuItem {
 
 export const mainMenu: IMenuItem[] = [
   {
-    title: 'Company',
-    link: '/company',
-    icon: <CompanyIcon />
-  },
-  {
-    title: 'Machines',
-    link: '/machines',
-    icon: <MachinesIcon />
-  },
-  {
-    title: 'Dashboards',
-    link: '/dashboards',
+    title: 'Dashboard',
+    link: '/dashboard',
     icon: <DashboardIcon />
+  },
+  {
+    title: 'Inspection Jobs',
+    link: '/jobs',
+    icon: <JobsIcon />
   },
   {
     title: 'Reports',
@@ -41,16 +33,6 @@ export const mainMenu: IMenuItem[] = [
     title: 'Production',
     link: '/production',
     icon: <ProductionIcon />
-  },
-  {
-    title: 'Inspection Jobs',
-    link: '/jobs',
-    icon: <JobsIcon />
-  },
-  {
-    title: 'Workflows',
-    link: '/workflows',
-    icon: <WorkflowsIcon />
   }
 ];
 

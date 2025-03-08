@@ -1,4 +1,4 @@
-import { PieChartItem } from '@pages/Company/components/PieChart';
+import { PieChartItem } from '@pages/Dashboard/components/PieChart';
 import { baseTheme } from '@/theme/base';
 
 interface PieCharts {

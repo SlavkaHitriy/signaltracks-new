@@ -1,10 +1,10 @@
 import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
 import { SearchInput } from '@components/SearchInput';
 import { DefaultSelect } from '@components/DefaultSelect';
-import EditIcon from '@assets/icons/edit.svg';
+import ImportIcon from '@assets/icons/import.svg';
 import { DataGrid, GridRowParams } from '@mui/x-data-grid';
 import { columns, rows } from './config/joints';
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import {
   pipeInfo1,
   pipeInfo2,
@@ -13,12 +13,11 @@ import {
   pipeInfo5
 } from '@pages/JobDetails/components/Details/config/pipeInfo';
 import CloseIcon from '@assets/icons/close.svg';
+import { useNavigate, useParams } from 'react-router';
 
-interface DetailsProps {
-  setIsEditing: Dispatch<SetStateAction<boolean>>;
-}
-
-export const Details: FC<DetailsProps> = ({ setIsEditing }) => {
+export const Details = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [selectedPipe, setSelectedPipe] = useState<GridRowParams | null>(null);
 
   return (
@@ -56,11 +55,11 @@ export const Details: FC<DetailsProps> = ({ setIsEditing }) => {
             fontSize: '14px',
             px: '36px !important'
           }}
-          startIcon={<EditIcon />}
+          startIcon={<ImportIcon />}
           variant={'outlined'}
-          onClick={() => setIsEditing(true)}
+          onClick={() => navigate(`/jobs/${id}/import`)}
         >
-          Edit Inspection Job
+          Import
         </Button>
       </Stack>
 
